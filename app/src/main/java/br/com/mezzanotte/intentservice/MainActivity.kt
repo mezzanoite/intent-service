@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.ListAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), DownloadResultReceiver.Receiver {
@@ -37,8 +39,8 @@ class MainActivity : AppCompatActivity(), DownloadResultReceiver.Receiver {
     fun preencheLista(resultData: Bundle) {
         showProgress(false)
         val results = resultData.getStringArray("result")
-        arrayAdapter = ArrayAdapter(this, R.layout.activity_main, results)
-        lvPokemons.adapter = arrayAdapter
+        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, results)
+        lvPokemons.adapter = arrayAdapter as ListAdapter?
     }
 
     override fun onReciveResult(resultCode: Int, resultData: Bundle) {
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity(), DownloadResultReceiver.Receiver {
             DownloadService.STATUS_FINISHED -> preencheLista(resultData)
             DownloadService.STATUS_ERROR -> {
                 val error = resultData.getString(Intent.EXTRA_TEXT)
-                // parei aqui
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         }
 

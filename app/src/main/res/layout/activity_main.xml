@@ -9,8 +9,8 @@
     <ListView
         android:id="@+id/lvPokemons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="match_parent" />
+
 
     <LinearLayout
         android:id="@+id/loading"
@@ -20,10 +20,13 @@
         android:gravity="center"
         android:background="#FFF">
 
-        <ImageView
-            android:layout_width="96dp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="192dp"
             android:layout_height="96dp"
-            android:src="@mipmap/ic_launcher"/>
+            app:lottie_fileName="flow.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
 
         <TextView
             android:layout_width="match_parent"
